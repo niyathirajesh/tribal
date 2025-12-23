@@ -86,7 +86,7 @@ app.post("/api/booking", async (req, res) => {
     try {
       await transporter.sendMail({
         to: process.env.KING_EMAIL,
-        subject: "New Appointment Request 👑",
+        subject: "New Appointment Request ",
         html: `
           <h2>New Appointment Request</h2>
           <p><b>Name:</b> ${booking.name}</p>
