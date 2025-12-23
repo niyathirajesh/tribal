@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #f4f6f9;
+  padding: 20px;
+}
+
+.dashboard-container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.dashboard-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #182848;
+}
+
+.booking-card {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.booking-card p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.status {
+  font-weight: bold;
+}
+
+.status.pending {
+  color: orange;
+}
+
+.status.accepted {
+  color: green;
+}
+
+.status.rejected {
+  color: red;
+}
+
+/* KING BUTTONS */
+.action-buttons {
+  margin-top: 10px;
+}
+
+.accept-btn {
+  background: green;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reject-btn {
+  background: red;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.accept-btn:hover {
+  background: #0f7a2e;
+}
+
+.reject-btn:hover {
+  background: #b71c1c;
+}

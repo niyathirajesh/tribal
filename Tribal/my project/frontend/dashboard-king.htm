@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>King Dashboard</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+body { font-family: Arial; padding: 20px; }
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+th { background: #f4f4f4; }
+button { padding: 5px 10px; margin-right: 5px; cursor: pointer; }
+.accept { background: #1a7f37; color: white; }
+.reject { background: #c62828; color: white; }
+</style>
+</head>
+<body>
+
+<h2>King Dashboard</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th><th>Email</th><th>Date</th><th>Time</th><th>Reason</th><th>Status</th><th>Action</th>
+</tr>
+</thead>
+<tbody id="kingTable"></tbody>
+</table>
+
+<script>
+async function loadBookings() {
+  try {
+    const res = await fetch("/api/king/bookings");
+    const bookings = await res.json();
+    const tbody = document.getElementById("kingTable");
+    tbody.innerHTML = "";
+
+    bookings.forEach(b => {
+      tbody.innerHTML += `
+        <tr>
+          <td>${b.name}</td>
+          <td>${b.email}</td>
+          <td>${b.date}</td>
+          <td>${b.time}</td>
+          <td>${b.reason}</td>
+          <td>${b.status}</td>
+          <td>
+            ${b.status === 'pending' 
+              ? `<button class="accept" onclick="processBooking('${b._id}','accept')">Accept</button>
+                 <button class="reject" onclick="processBooking('${b._id}','reject')">Reject</button>`
+              : '-'
+            }
+          </td>
+        </tr>
+      `;
+    });
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function processBooking(id, action) {
+  try {
+    const res = await fetch(`/api/booking/${id}/${action}`);
+    if (res.ok) {
+      alert(`Booking ${action}ed successfully`);
+      loadBookings();
+    } else {
+      alert("Failed to process booking");
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+loadBookings();
+</script>
+
+</body>
+</html>
