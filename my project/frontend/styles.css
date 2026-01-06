@@ -1,0 +1,180 @@
+/* ---------------- GLOBAL STYLES ---------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f1ea;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* ---------------- TITLE SECTION ---------------- */
+.title-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #1a472a;
+}
+
+/* ---------------- FORM CHOICE (LOGIN / REGISTER SWITCH) ---------------- */
+.form-choice {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.form-choice label {
+  margin-right: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ---------------- FORM STYLES (LOGIN / REGISTER / BOOKING) ---------------- */
+form {
+  background-color: #fff;
+  padding: 20px 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+input,
+select,
+textarea,
+button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  resize: none;
+}
+
+/* ---------------- BUTTON STYLES ---------------- */
+button {
+  background-color: #1a472a;
+  color: white;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #155a3a;
+}
+
+/* ---------------- DASHBOARD LAYOUT ---------------- */
+.dashboard-container {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* ---------------- BOOKING CARD (USER + KING) ---------------- */
+.booking-card {
+  background-color: #ffffff;
+  padding: 18px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.12);
+  margin-bottom: 15px;
+}
+
+.booking-card p {
+  margin: 6px 0;
+  color: #333;
+  font-size: 15px;
+}
+
+/* ---------------- STATUS LABELS ---------------- */
+.status {
+  font-weight: bold;
+}
+
+.status.pending {
+  color: orange;
+}
+
+.status.accepted {
+  color: green;
+}
+
+.status.rejected {
+  color: red;
+}
+
+/* ---------------- KING ACTION BUTTONS ---------------- */
+.action-buttons {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+}
+
+.accept-btn {
+  background-color: #1a7f37;
+}
+
+.reject-btn {
+  background-color: #c62828;
+}
+
+.accept-btn:hover {
+  background-color: #145c2a;
+}
+
+.reject-btn:hover {
+  background-color: #9e1f1f;
+}
+
+/* ---------------- NO DATA MESSAGE ---------------- */
+.no-bookings {
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+  margin-top: 20px;
+}
+
+/* ---------------- LINKS (LOGIN ↔ REGISTER) ---------------- */
+.auth-link {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.auth-link a {
+  color: #1a472a;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.auth-link a:hover {
+  text-decoration: underline;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 600px) {
+  form {
+    width: 90%;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .accept-btn,
+  .reject-btn {
+    width: 100%;
+  }
+}

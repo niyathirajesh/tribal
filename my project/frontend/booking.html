@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Appointment</title>
+   <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Book Appointment</h1>
+  <form id="bookingForm">
+    <input id="name" placeholder="Name" required /><br>
+    <input id="email" placeholder="Email" type="email" required /><br>
+    <input id="date" type="date" required /><br>
+    <input id="time" type="time" required /><br>
+    <input id="reason" placeholder="Reason" required /><br>
+    <button type="submit">Book</button>
+  </form>
+
+  <p id="status"></p>
+
+  <script>
+    const form = document.getElementById("bookingForm");
+    const statusText = document.getElementById("status");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        date: document.getElementById("date").value,
+        time: document.getElementById("time").value,
+        reason: document.getElementById("reason").value
+      };
+
+      try {
+        const res = await fetch("http://localhost:3000/api/booking", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+
+        if (res.ok) {
+          statusText.textContent = "Booking request sent! Waiting for King's response...";
+          
+          // Poll for status every 5 seconds
+          const interval = setInterval(async () => {
+            const statusRes = await fetch(`http://localhost:3000/api/booking/${result.bookingId}`);
+            const statusData = await statusRes.json();
+            if (statusData.status !== "pending") {
+              statusText.textContent = "Booking " + statusData.status.toUpperCase();
+              clearInterval(interval);
+            }
+          }, 5000);
+
+        } else {
+          statusText.textContent = "Error: " + result.error;
+        }
+      } catch (err) {
+        statusText.textContent = "Failed: " + err.message;
+      }
+    });
+  </script>
+</body>
+</html>
